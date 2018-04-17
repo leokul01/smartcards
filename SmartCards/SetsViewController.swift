@@ -8,27 +8,13 @@
 
 import UIKit
 
-class SetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+class SetsViewController: UIViewController{
+
     @IBOutlet weak var setsTableView: UITableView!
-    
-    let animals = ["cat", "dog", "bird"]
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return animals.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = setsTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = animals[indexPath.row]
-        return cell
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        setsTableView.delegate = self
-//        setsTableView.dataSource = self
+        //self.setsTableView.dataSource = self
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -37,7 +23,28 @@ class SetsViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
+extension SetsViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SetsCell", for: indexPath) as! SetsTableViewCell
+        //cell.textLabel?.text = "Hello its me!"
+        cell.setsNameLabel?.text = "Hello its me!"
+        return cell
+    }
+}
+
+extension SetsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Pushed string #\(indexPath.row) in section #\(indexPath.section)")
+    }
+}
