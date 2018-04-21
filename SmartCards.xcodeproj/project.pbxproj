@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E53E3F35208BC4AD00B4931C /* AddSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53E3F34208BC4AD00B4931C /* AddSetTableViewCell.swift */; };
+		E53E3F38208BCE3900B4931C /* AddSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53E3F37208BCE3900B4931C /* AddSetViewController.swift */; };
 		E5424C1120850FB200FA54BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5424C1020850FB200FA54BC /* AppDelegate.swift */; };
 		E5424C1320850FB200FA54BC /* SetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5424C1220850FB200FA54BC /* SetsViewController.swift */; };
 		E5424C1520850FB200FA54BC /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5424C1420850FB200FA54BC /* SecondViewController.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E53E3F34208BC4AD00B4931C /* AddSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSetTableViewCell.swift; sourceTree = "<group>"; };
+		E53E3F37208BCE3900B4931C /* AddSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSetViewController.swift; sourceTree = "<group>"; };
 		E5424C0D20850FB200FA54BC /* SmartCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5424C1020850FB200FA54BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5424C1220850FB200FA54BC /* SetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +43,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E53E3F36208BC4BC00B4931C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E5CC6D8D2085350A00AD0663 /* SetsTableViewCell.swift */,
+				E53E3F34208BC4AD00B4931C /* AddSetTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		E5424C0420850FB200FA54BC = {
 			isa = PBXGroup;
 			children = (
@@ -60,7 +73,8 @@
 			children = (
 				E5424C1020850FB200FA54BC /* AppDelegate.swift */,
 				E5424C1220850FB200FA54BC /* SetsViewController.swift */,
-				E5CC6D8D2085350A00AD0663 /* SetsTableViewCell.swift */,
+				E53E3F37208BCE3900B4931C /* AddSetViewController.swift */,
+				E53E3F36208BC4BC00B4931C /* Cells */,
 				E5424C1620850FB200FA54BC /* Main.storyboard */,
 				E5424C1420850FB200FA54BC /* SecondViewController.swift */,
 				E5424C1920850FB500FA54BC /* Assets.xcassets */,
@@ -141,6 +155,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E53E3F35208BC4AD00B4931C /* AddSetTableViewCell.swift in Sources */,
+				E53E3F38208BCE3900B4931C /* AddSetViewController.swift in Sources */,
 				E5CC6D8E2085350A00AD0663 /* SetsTableViewCell.swift in Sources */,
 				E5424C1520850FB200FA54BC /* SecondViewController.swift in Sources */,
 				E5424C1120850FB200FA54BC /* AppDelegate.swift in Sources */,

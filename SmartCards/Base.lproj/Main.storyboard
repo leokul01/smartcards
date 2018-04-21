@@ -53,6 +53,34 @@
                                             <outlet property="setsNameLabel" destination="TgR-c9-nLj" id="ytk-EM-8F2"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AddSetCell" rowHeight="103" id="4S4-hu-9N4" customClass="AddSetTableViewCell" customModule="SmartCards" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="131" width="375" height="103"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4S4-hu-9N4" id="Gdz-a5-b8d">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="102.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jwq-aR-ZF4">
+                                                    <rect key="frame" x="145.5" y="9" width="84" height="84"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="84" id="4Ch-sB-4hq"/>
+                                                        <constraint firstAttribute="width" constant="84" id="8wB-2g-VXS"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                                    <state key="normal" title="+"/>
+                                                    <connections>
+                                                        <segue destination="xhf-Yn-hxY" kind="show" id="1zI-7u-i6X"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Jwq-aR-ZF4" firstAttribute="centerY" secondItem="Gdz-a5-b8d" secondAttribute="centerY" id="4UX-gg-Npt"/>
+                                                <constraint firstItem="Jwq-aR-ZF4" firstAttribute="centerX" secondItem="Gdz-a5-b8d" secondAttribute="centerX" id="aga-tp-iXI"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Jwq-aR-ZF4" secondAttribute="bottom" constant="15" id="r5h-ua-gae"/>
+                                                <constraint firstItem="Jwq-aR-ZF4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Gdz-a5-b8d" secondAttribute="top" constant="15" id="uPn-sY-tHO"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="9pv-A4-QxB" id="Sr2-Xc-rhQ"/>
@@ -80,6 +108,125 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
+        </scene>
+        <!--Add Set View Controller-->
+        <scene sceneID="eQo-TM-QVS">
+            <objects>
+                <viewController id="xhf-Yn-hxY" customClass="AddSetViewController" customModule="SmartCards" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yuq-MG-zYs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4w0-Io-Ukw">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Редактор сета" id="Iup-li-9OT">
+                                        <barButtonItem key="leftBarButtonItem" title="Назад" id="Pb6-fT-F0P">
+                                            <connections>
+                                                <segue destination="cAh-7E-z7f" kind="unwind" unwindAction="unwindFromAddingWithUnwindSegue:" id="TaK-Fq-6dS"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Далее" id="Yo1-D7-k9A"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="baq-28-O1v">
+                                <rect key="frame" x="90" y="94" width="195" height="195"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="195" id="P2N-t9-trD"/>
+                                    <constraint firstAttribute="height" constant="195" id="xke-ku-GAt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Выбрать фото для сета"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="juE-mL-oET">
+                                <rect key="frame" x="89.5" y="442" width="195" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="195" id="NRP-Q3-Ork"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Описание сета &lt;"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lGb-Sy-bbb">
+                                <rect key="frame" x="90" y="358" width="195" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="195" id="95m-gU-R8x"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Название сета &lt;"/>
+                                <connections>
+                                    <segue destination="7Ko-ZH-nFS" kind="popoverPresentation" popoverAnchorView="lGb-Sy-bbb" id="y3M-9K-MR1">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lGb-Sy-bbb" firstAttribute="top" secondItem="baq-28-O1v" secondAttribute="bottom" constant="50" id="93m-cU-s79"/>
+                            <constraint firstItem="4w0-Io-Ukw" firstAttribute="top" secondItem="8Rr-bC-8Xc" secondAttribute="top" id="S6A-1b-rXr"/>
+                            <constraint firstItem="baq-28-O1v" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Rr-bC-8Xc" secondAttribute="leading" constant="15" id="UUb-nf-T3W"/>
+                            <constraint firstItem="juE-mL-oET" firstAttribute="top" secondItem="lGb-Sy-bbb" secondAttribute="bottom" constant="15" id="biH-EM-59b"/>
+                            <constraint firstItem="8Rr-bC-8Xc" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="baq-28-O1v" secondAttribute="trailing" constant="15" id="cyD-Ye-HNN"/>
+                            <constraint firstItem="juE-mL-oET" firstAttribute="centerX" secondItem="Yuq-MG-zYs" secondAttribute="centerX" id="f7r-OH-trQ"/>
+                            <constraint firstItem="lGb-Sy-bbb" firstAttribute="centerX" secondItem="Yuq-MG-zYs" secondAttribute="centerX" id="fKi-YQ-NPV"/>
+                            <constraint firstItem="baq-28-O1v" firstAttribute="centerX" secondItem="Yuq-MG-zYs" secondAttribute="centerX" id="gUB-oS-YBO"/>
+                            <constraint firstItem="4w0-Io-Ukw" firstAttribute="trailing" secondItem="8Rr-bC-8Xc" secondAttribute="trailing" id="gvT-o8-4HS"/>
+                            <constraint firstItem="4w0-Io-Ukw" firstAttribute="leading" secondItem="8Rr-bC-8Xc" secondAttribute="leading" id="rQ3-dJ-02g"/>
+                            <constraint firstItem="baq-28-O1v" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4w0-Io-Ukw" secondAttribute="bottom" constant="30" id="tLs-l9-tHu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8Rr-bC-8Xc"/>
+                    </view>
+                    <connections>
+                        <outlet property="addPhotoSet" destination="baq-28-O1v" id="E1B-do-kZe"/>
+                        <outlet property="decriptionSetButton" destination="juE-mL-oET" id="G6b-jW-soj"/>
+                        <outlet property="nameSetButton" destination="lGb-Sy-bbb" id="ybf-ZB-djZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TQ3-sc-UoK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="cAh-7E-z7f" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1501.5999999999999" y="-318.89055472263868"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="kgd-SP-R35">
+            <objects>
+                <viewController id="7Ko-ZH-nFS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WT2-ZS-4yB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ffb-Ju-B6I">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="zwZ-xx-U9d">
+                                        <barButtonItem key="leftBarButtonItem" title="Назад" id="26o-ss-ncs">
+                                            <connections>
+                                                <segue destination="4TX-Ic-zzl" kind="unwind" unwindAction="unwindFromAddingNameWithUnwindSegue:" id="wLm-2a-Z1d"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Придумайте название..." borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fWN-YB-zer">
+                                <rect key="frame" x="95.5" y="156" width="184" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fWN-YB-zer" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ffb-Ju-B6I" secondAttribute="bottom" constant="15" id="Vdp-LH-XKU"/>
+                            <constraint firstItem="fWN-YB-zer" firstAttribute="centerX" secondItem="WT2-ZS-4yB" secondAttribute="centerX" id="tyK-Fd-Qzy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4FS-Ra-ZHr"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mRf-PH-VIb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="4TX-Ic-zzl" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2380" y="-307"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">

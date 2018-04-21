@@ -23,23 +23,40 @@ class SetsViewController: UIViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func unwindFromAdding(unwindSegue: UIStoryboardSegue) {
+    }
 }
 
 extension SetsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        switch(section) {
+        case 0: return 5
+        case 1: return 1
+        default:
+            print("error")
+            exit(1)
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SetsCell", for: indexPath) as! SetsTableViewCell
-        //cell.textLabel?.text = "Hello its me!"
-        cell.setsNameLabel?.text = "Hello its me!"
-        return cell
+        switch(indexPath.section) {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SetsCell", for: indexPath) as! SetsTableViewCell
+            cell.setsNameLabel.text = "Hello its me!"
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AddSetCell", for: indexPath) as! AddSetTableViewCell
+            return cell
+        default:
+            print("error")
+            exit(1)
+        }
     }
 }
 
