@@ -150,9 +150,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Описание сета &lt;"/>
                                 <connections>
-                                    <segue destination="7Ko-ZH-nFS" kind="popoverPresentation" popoverAnchorView="juE-mL-oET" id="AkA-jS-aCV">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <segue destination="7Ko-ZH-nFS" kind="show" id="AkA-jS-aCV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lGb-Sy-bbb">
@@ -164,6 +162,14 @@
                                 <state key="normal" title="Название сета &lt;"/>
                                 <connections>
                                     <action selector="getSetsNameAction:" destination="xhf-Yn-hxY" eventType="touchUpInside" id="QX5-e6-d6c"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rk1-Wm-uWb">
+                                <rect key="frame" x="164" y="501" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="test:" destination="xhf-Yn-hxY" eventType="touchUpInside" id="JaF-4R-iUB"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -205,13 +211,17 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ffb-Ju-B6I">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="zwZ-xx-U9d">
+                                    <navigationItem title="Описание сета" id="zwZ-xx-U9d">
                                         <barButtonItem key="leftBarButtonItem" title="Назад" id="26o-ss-ncs">
                                             <connections>
-                                                <segue destination="4TX-Ic-zzl" kind="unwind" unwindAction="unwindFromEditingWithUnwindSegue:" id="tX7-fa-5VC"/>
+                                                <action selector="cancelAction:" destination="7Ko-ZH-nFS" id="yQX-Ka-dS7"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Item" id="G5D-DX-iRs"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Сохранить" id="G5D-DX-iRs">
+                                            <connections>
+                                                <segue destination="4TX-Ic-zzl" kind="unwind" unwindAction="unwindFromDescriptionViewControllerSaveWithUnwindSegue:" id="aUm-1p-NcY"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -244,6 +254,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4FS-Ra-ZHr"/>
                     </view>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="GVU-qQ-p35" id="ARh-mE-zSW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mRf-PH-VIb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4TX-Ic-zzl" userLabel="Exit" sceneMemberID="exit"/>

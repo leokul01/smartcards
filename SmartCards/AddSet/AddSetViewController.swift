@@ -8,33 +8,35 @@
 
 import UIKit
 
-protocol AddElemets4Set {
+protocol AddCoverNameForSet {
     func nameInputField()
     func photoInputField()
 }
 
-class AddSetViewController: UIViewController {
+class AddSetViewController: UIViewController{
+    
     @IBOutlet weak var addPhotoSetButton: UIButton!
     @IBOutlet weak var nameSetButton: UIButton!
     @IBOutlet weak var descriptionSetButton: UIButton!
+    @IBAction func test(_ sender: Any) {
+        print(set.description)
+    }
+    
+    var set = SmartSet()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         addPhotoSetButton.layer.borderWidth = 0.8
         addPhotoSetButton.layer.borderColor = UIColor.blue.cgColor
         addPhotoSetButton.layer.cornerRadius = 10
-        
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func unwindFromEditing(unwindSegue: UIStoryboardSegue) {
+    @IBAction func unwindFromDescriptionViewControllerSave(unwindSegue: UIStoryboardSegue) {
+        print(set.description)
     }
+    
     @IBAction func getSetsNameAction(_ sender: Any) {
         nameInputField()
     }
@@ -42,9 +44,22 @@ class AddSetViewController: UIViewController {
         photoInputField()
     }
     
+    // MARK: - AddDescriptionViewControllerDelegate
+    
+//    func addDescriptionViewController(_ addDescriptionViewController: DescriptionViewController, didAddDescription description: String) {
+//        set.description = description
+//        print(set.description)
+//    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let navigationController = segue.destination as! UINavigationController
+//        let addDescriptionViewController = navigationController.topViewController as! DescriptionViewController
+//        addDescriptionViewController.delegate = self
+//    }
+    
 }
 
-extension AddSetViewController: AddElemets4Set {
+extension AddSetViewController: AddCoverNameForSet {
     func nameInputField() {
         let title = NSLocalizedString("Название сета", comment: "")
         let message = NSLocalizedString("Придумайте короткое и информативное название", comment: "")

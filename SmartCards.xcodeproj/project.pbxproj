@@ -16,6 +16,7 @@
 		E5424C1A20850FB500FA54BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5424C1920850FB500FA54BC /* Assets.xcassets */; };
 		E5424C1D20850FB500FA54BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5424C1B20850FB500FA54BC /* LaunchScreen.storyboard */; };
 		E5545120208C87810099F38A /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E554511F208C87810099F38A /* DescriptionViewController.swift */; };
+		E5CB91632090F5CB0079352F /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CB91622090F5CB0079352F /* Set.swift */; };
 		E5CC6D8E2085350A00AD0663 /* SetsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CC6D8D2085350A00AD0663 /* SetsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		E5424C1C20850FB500FA54BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E5424C1E20850FB500FA54BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E554511F208C87810099F38A /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
+		E5CB91622090F5CB0079352F /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
 		E5CC6D8D2085350A00AD0663 /* SetsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +77,7 @@
 			children = (
 				E5424C1020850FB200FA54BC /* AppDelegate.swift */,
 				E5424C1220850FB200FA54BC /* SetsViewController.swift */,
+				E5CB91622090F5CB0079352F /* Set.swift */,
 				E5545121208C87890099F38A /* AddSet */,
 				E53E3F36208BC4BC00B4931C /* Cells */,
 				E5424C1620850FB200FA54BC /* Main.storyboard */,
@@ -166,6 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5CB91632090F5CB0079352F /* Set.swift in Sources */,
 				E53E3F35208BC4AD00B4931C /* AddSetTableViewCell.swift in Sources */,
 				E5545120208C87810099F38A /* DescriptionViewController.swift in Sources */,
 				E53E3F38208BCE3900B4931C /* AddSetViewController.swift in Sources */,
