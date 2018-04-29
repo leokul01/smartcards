@@ -8,35 +8,25 @@
 
 import UIKit
 
-//protocol AddDescriptionViewControllerDelegate {
-//    func addDescriptionViewController(_ addDescriptionViewController: DescriptionViewController, didAddDescription description: String)
-//}
-
 class DescriptionViewController: UIViewController {
     
     @IBOutlet weak var descriptionTextView: UITextView!
     
-//    var delegate: AddDescriptionViewControllerDelegate?
-//    var newDescription: String = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func cancelAction(_ sender: Any) {
-        //newDescription = descriptionTextView.text ?? ""
-        //delegate?.addDescriptionViewController(self, didAddDescription: newDescription)
-        dismiss(animated: true, completion: nil)
-    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let receiverVC = segue.destination as! AddSetViewController
         receiverVC.set.description = descriptionTextView.text ?? ""
+    }
+    
+    @IBAction func cancelAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 }
 

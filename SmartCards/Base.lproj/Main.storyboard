@@ -126,7 +126,11 @@
                                                 <segue destination="cAh-7E-z7f" kind="unwind" unwindAction="unwindFromAddingWithUnwindSegue:" id="TaK-Fq-6dS"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Далее" id="Yo1-D7-k9A"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Далее" id="Yo1-D7-k9A">
+                                            <connections>
+                                                <segue destination="nhS-UB-1yo" kind="show" id="lpb-f9-neR"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -164,14 +168,6 @@
                                     <action selector="getSetsNameAction:" destination="xhf-Yn-hxY" eventType="touchUpInside" id="QX5-e6-d6c"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rk1-Wm-uWb">
-                                <rect key="frame" x="164" y="501" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="test:" destination="xhf-Yn-hxY" eventType="touchUpInside" id="JaF-4R-iUB"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -199,6 +195,149 @@
                 <exit id="cAh-7E-z7f" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1501.5999999999999" y="-318.89055472263868"/>
+        </scene>
+        <!--Sets Cards View Controller-->
+        <scene sceneID="b2B-SO-wpa">
+            <objects>
+                <viewController id="nhS-UB-1yo" customClass="SetsCardsViewController" customModule="SmartCards" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qHs-kq-bgS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите изучаемое слово" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1TK-de-ctM">
+                                <rect key="frame" x="15" y="94" width="345" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xau-pU-0bb">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem id="cft-Nw-SFB">
+                                        <barButtonItem key="leftBarButtonItem" title="Назад" id="7cp-Wo-6uh">
+                                            <connections>
+                                                <action selector="cancelAction:" destination="nhS-UB-1yo" id="s8a-T5-u1w"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="B6N-G5-gXD"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Тык..." adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gVJ-kI-CiH">
+                                <rect key="frame" x="90" y="152" width="195" height="195"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="195" id="dzK-NU-aJ4"/>
+                                    <constraint firstAttribute="height" constant="195" id="otV-xm-JOG"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SXz-4i-Pza">
+                                <rect key="frame" x="15" y="377" width="345" height="156"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UnX-iu-CDw">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="olj-A4-cFC" customClass="CollectionViewCell" customModule="SmartCards" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhH-Lq-WWX">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="nhH-Lq-WWX" firstAttribute="leading" secondItem="olj-A4-cFC" secondAttribute="leading" id="6xt-Lx-A2m"/>
+                                            <constraint firstItem="nhH-Lq-WWX" firstAttribute="top" secondItem="olj-A4-cFC" secondAttribute="top" id="UTs-RV-vWR"/>
+                                            <constraint firstAttribute="bottom" secondItem="nhH-Lq-WWX" secondAttribute="bottom" id="Zab-QW-Ue1"/>
+                                            <constraint firstAttribute="trailing" secondItem="nhH-Lq-WWX" secondAttribute="trailing" id="sIh-XM-1xM"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="cardNumber" destination="nhH-Lq-WWX" id="qfd-9H-qda"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="addCell" id="BPm-gZ-QQc" customClass="AddCollectionViewCell" customModule="SmartCards" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="106" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2t-wf-IeU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="C2t-wf-IeU" firstAttribute="leading" secondItem="BPm-gZ-QQc" secondAttribute="leading" id="PED-NN-sQm"/>
+                                            <constraint firstItem="C2t-wf-IeU" firstAttribute="top" secondItem="BPm-gZ-QQc" secondAttribute="top" id="VrQ-Jf-3Mh"/>
+                                            <constraint firstAttribute="trailing" secondItem="C2t-wf-IeU" secondAttribute="trailing" id="YiD-tM-ygr"/>
+                                            <constraint firstAttribute="bottom" secondItem="C2t-wf-IeU" secondAttribute="bottom" id="kLX-bH-j8q"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="addCardLabel" destination="C2t-wf-IeU" id="Xcz-zp-Hr1"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="nhS-UB-1yo" id="YdT-pm-4rG"/>
+                                    <outlet property="delegate" destination="nhS-UB-1yo" id="U6Z-qf-zw4"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZc-6t-9JB">
+                                <rect key="frame" x="250" y="312" width="30" height="30"/>
+                                <state key="normal" title="-&gt;"/>
+                                <connections>
+                                    <action selector="turnAroundAction:" destination="nhS-UB-1yo" eventType="touchUpInside" id="3eU-Em-9k8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gVJ-kI-CiH" firstAttribute="bottom" secondItem="CZc-6t-9JB" secondAttribute="bottom" constant="5" id="8sJ-cb-3oo"/>
+                            <constraint firstItem="1TK-de-ctM" firstAttribute="top" secondItem="xau-pU-0bb" secondAttribute="bottom" constant="30" id="9e5-Ar-KG8"/>
+                            <constraint firstItem="xau-pU-0bb" firstAttribute="leading" secondItem="lFz-QD-sBI" secondAttribute="leading" id="CSp-60-YUN"/>
+                            <constraint firstItem="xau-pU-0bb" firstAttribute="trailing" secondItem="lFz-QD-sBI" secondAttribute="trailing" id="DZk-7H-wxR"/>
+                            <constraint firstItem="lFz-QD-sBI" firstAttribute="trailing" secondItem="SXz-4i-Pza" secondAttribute="trailing" constant="15" id="Eya-uD-zsy"/>
+                            <constraint firstItem="lFz-QD-sBI" firstAttribute="trailing" secondItem="1TK-de-ctM" secondAttribute="trailing" constant="15" id="MyB-XF-cC6"/>
+                            <constraint firstItem="SXz-4i-Pza" firstAttribute="centerX" secondItem="qHs-kq-bgS" secondAttribute="centerX" id="POK-31-til"/>
+                            <constraint firstItem="gVJ-kI-CiH" firstAttribute="trailing" secondItem="CZc-6t-9JB" secondAttribute="trailing" constant="5" id="SDT-4D-ysq"/>
+                            <constraint firstItem="gVJ-kI-CiH" firstAttribute="centerX" secondItem="qHs-kq-bgS" secondAttribute="centerX" id="WJl-RU-Qev"/>
+                            <constraint firstItem="SXz-4i-Pza" firstAttribute="leading" secondItem="lFz-QD-sBI" secondAttribute="leading" constant="15" id="WoS-Zw-8kc"/>
+                            <constraint firstItem="1TK-de-ctM" firstAttribute="leading" secondItem="lFz-QD-sBI" secondAttribute="leading" constant="15" id="fJ7-Je-C5k"/>
+                            <constraint firstItem="SXz-4i-Pza" firstAttribute="top" secondItem="gVJ-kI-CiH" secondAttribute="bottom" constant="30" id="hUx-t3-8c7"/>
+                            <constraint firstItem="gVJ-kI-CiH" firstAttribute="top" secondItem="1TK-de-ctM" secondAttribute="bottom" constant="30" id="ntr-ff-S6j"/>
+                            <constraint firstItem="lFz-QD-sBI" firstAttribute="bottom" secondItem="SXz-4i-Pza" secondAttribute="bottom" constant="134" id="wdO-FL-dMj"/>
+                            <constraint firstItem="xau-pU-0bb" firstAttribute="top" secondItem="lFz-QD-sBI" secondAttribute="top" id="yIQ-Id-mb3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lFz-QD-sBI"/>
+                    </view>
+                    <connections>
+                        <outlet property="addFrontCardText" destination="gVJ-kI-CiH" id="aM7-kn-eGU"/>
+                        <outlet property="cardNumber" destination="cft-Nw-SFB" id="zJq-M9-2eO"/>
+                        <outlet property="collectionView" destination="SXz-4i-Pza" id="Kei-q2-mCB"/>
+                        <outlet property="promtLabel" destination="1TK-de-ctM" id="gZf-tH-Fue"/>
+                        <outlet property="turnCardAround" destination="CZc-6t-9JB" id="Uxy-mY-Yx2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1hE-W6-VmY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2349.5999999999999" y="-316.19190404797604"/>
         </scene>
         <!--Description View Controller-->
         <scene sceneID="kgd-SP-R35">
@@ -261,7 +400,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mRf-PH-VIb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4TX-Ic-zzl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2380" y="-307.1964017991005"/>
+            <point key="canvasLocation" x="1502" y="-1083"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">

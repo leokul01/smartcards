@@ -18,9 +18,6 @@ class AddSetViewController: UIViewController{
     @IBOutlet weak var addPhotoSetButton: UIButton!
     @IBOutlet weak var nameSetButton: UIButton!
     @IBOutlet weak var descriptionSetButton: UIButton!
-    @IBAction func test(_ sender: Any) {
-        print(set.description)
-    }
     
     var set = SmartSet()
     
@@ -34,7 +31,7 @@ class AddSetViewController: UIViewController{
     }
     
     @IBAction func unwindFromDescriptionViewControllerSave(unwindSegue: UIStoryboardSegue) {
-        print(set.description)
+        
     }
     
     @IBAction func getSetsNameAction(_ sender: Any) {
@@ -43,19 +40,6 @@ class AddSetViewController: UIViewController{
     @IBAction func getPhotoSetAction(_ sender: Any) {
         photoInputField()
     }
-    
-    // MARK: - AddDescriptionViewControllerDelegate
-    
-//    func addDescriptionViewController(_ addDescriptionViewController: DescriptionViewController, didAddDescription description: String) {
-//        set.description = description
-//        print(set.description)
-//    }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let navigationController = segue.destination as! UINavigationController
-//        let addDescriptionViewController = navigationController.topViewController as! DescriptionViewController
-//        addDescriptionViewController.delegate = self
-//    }
     
 }
 
