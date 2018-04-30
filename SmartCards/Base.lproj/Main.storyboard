@@ -219,7 +219,11 @@
                                                 <action selector="cancelAction:" destination="nhS-UB-1yo" id="s8a-T5-u1w"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="B6N-G5-gXD"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="B6N-G5-gXD">
+                                            <connections>
+                                                <action selector="deleteCurrentCard:" destination="nhS-UB-1yo" id="coI-vH-plx"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -236,10 +240,10 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SXz-4i-Pza">
                                 <rect key="frame" x="15" y="377" width="345" height="156"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UnX-iu-CDw">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wny-cQ-cx7">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="10" height="50"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
@@ -294,6 +298,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2WO-qr-nOM">
+                                    <rect key="frame" x="50" y="0.0" width="10" height="156"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="nhS-UB-1yo" id="YdT-pm-4rG"/>
                                     <outlet property="delegate" destination="nhS-UB-1yo" id="U6Z-qf-zw4"/>
@@ -331,6 +339,7 @@
                         <outlet property="addFrontCardText" destination="gVJ-kI-CiH" id="aM7-kn-eGU"/>
                         <outlet property="cardNumber" destination="cft-Nw-SFB" id="zJq-M9-2eO"/>
                         <outlet property="collectionView" destination="SXz-4i-Pza" id="Kei-q2-mCB"/>
+                        <outlet property="deleteCardButton" destination="B6N-G5-gXD" id="QNx-F6-1VA"/>
                         <outlet property="promtLabel" destination="1TK-de-ctM" id="gZf-tH-Fue"/>
                         <outlet property="turnCardAround" destination="CZc-6t-9JB" id="Uxy-mY-Yx2"/>
                     </connections>

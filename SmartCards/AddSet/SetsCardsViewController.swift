@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SetsCardsViewControllerAlerts {
+    func showWarningAlert()
+}
+
 class SetsCardsViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -15,21 +19,22 @@ class SetsCardsViewController: UIViewController {
     @IBOutlet weak var promtLabel: UILabel!
     @IBOutlet weak var addFrontCardText: UITextField!
     @IBOutlet weak var turnCardAround: UIButton!
+    @IBOutlet weak var deleteCardButton: UIBarButtonItem!
     
-    var bufFCard: String = ""
-    var bufBCard: String = ""
-    var state = false
+    var lastModifiedItem: Int = 0
     
     var frontCard: String = ""
     var backCard: String = ""
     var didCardTurn = false
     
     var iterator = 0
-    var cardsCollection: [String:String] = ["":""]
+    var cardsCollection: [(front: String, back: String)] = [(front: "", back: "")]
+    var currentPlace = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        deleteCardButton.isEnabled = false
         turnCardAround.setTitle("->", for: UIControlState.normal)
         cardNumber.title = "Карточка № \(iterator)"
         addFrontCardText.layer.borderWidth = 0.8
@@ -48,11 +53,22 @@ class SetsCardsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
     @IBAction func cancelAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
+    @IBAction func deleteCurrentCard(_ sender: Any) {
+        cardsCollection.remove(at: lastModifiedItem)
+        frontCard = cardsCollection[lastModifiedItem].front
+        backCard = cardsCollection[lastModifiedItem].back
+        addFrontCardText.text = frontCard
+        promtLabel.text = "Введите изучаемое слово"
+        cardNumber.title = "Карточка № \(lastModifiedItem)"
+        turnCardAround.setTitle("->", for: UIControlState.normal)
+        didCardTurn = false
+        
+        iterator = 0
+        collectionView.reloadData()
+    }
     
     @IBAction func turnAroundAction(_ sender: Any) {
         if (!didCardTurn) {
@@ -93,15 +109,19 @@ class SetsCardsViewController: UIViewController {
 extension SetsCardsViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cardsCollection.count + 1
+        if section == 0 {
+            return cardsCollection.count
+        } else {
+            return 1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch (iterator < cardsCollection.count) {
+        switch (iterator < cardsCollection.count && indexPath.section == 0) {
         case true:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! CollectionViewCell
             
@@ -115,7 +135,7 @@ extension SetsCardsViewController: UICollectionViewDataSource {
         case false:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addCell", for: indexPath as IndexPath) as! AddCollectionViewCell
             
-            cell.layer.borderColor = UIColor.lightGray.cgColor
+            cell.layer.borderColor = UIColor.blue.cgColor
             cell.layer.borderWidth = 1
             cell.layer.cornerRadius = 8
             
@@ -129,37 +149,58 @@ extension SetsCardsViewController: UICollectionViewDataSource {
 
 extension SetsCardsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if didCardTurn, backCard == "" {backCard = addFrontCardText.text ?? ""}
-        if indexPath.item == cardsCollection.count/*, frontCard != "", backCard != ""*/ { // last item
-            cardsCollection[frontCard] = backCard
+        if didCardTurn {backCard = addFrontCardText.text ?? ""}
+        else {frontCard = addFrontCardText.text ?? ""}
+        if indexPath.section == 1 {
+            deleteCardButton.isEnabled = false
+            if (lastModifiedItem != cardsCollection.count - 1) {
+                frontCard = cardsCollection[cardsCollection.count - 1].front
+                backCard = cardsCollection[cardsCollection.count - 1].back
+            }
+            if frontCard == "" || backCard == "" {
+                showWarningAlert()
+                return
+            }
+            cardsCollection[cardsCollection.count - 1] = (front: frontCard, back: backCard)
+            cardsCollection.append((front: "", back: ""))
             frontCard = ""
             backCard = ""
             addFrontCardText?.text = nil
-            cardNumber.title = "Карточка № \(cardsCollection.count - 1)"
-        } else if indexPath.item != (cardsCollection.count - 1) { // other except last and prelast
-            if bufFCard == "", !state {
-                state = true
-                bufFCard = frontCard
-                bufBCard = backCard
-            }
-            frontCard = Array(cardsCollection)[indexPath.item + 1].key
-            backCard = Array(cardsCollection)[indexPath.item + 1].value
-            promtLabel.text = "Введите изучаемое слово"
-            cardNumber.title = "Карточка № \(indexPath.item)"
+            lastModifiedItem = cardsCollection.count - 1
+            //currentPlace = cardsCollection.count - 1
+        } else {
+            cardsCollection[lastModifiedItem] = (front: frontCard, back: backCard)
+            lastModifiedItem = indexPath.item
+            frontCard = cardsCollection[indexPath.item].front
+            backCard = cardsCollection[indexPath.item].back
             addFrontCardText.text = frontCard
-        } else { // prelast
-            frontCard = bufFCard
-            backCard = bufBCard
-            bufFCard = ""
-            bufBCard = ""
-            state = false
-            addFrontCardText?.text = frontCard
-            cardNumber.title = "Карточка № \(cardsCollection.count - 1)"
+            if (indexPath.item != cardsCollection.count - 1) {deleteCardButton.isEnabled = true} else {deleteCardButton.isEnabled = false}
         }
+        promtLabel.text = "Введите изучаемое слово"
+        cardNumber.title = "Карточка № \(indexPath.item)"
         turnCardAround.setTitle("->", for: UIControlState.normal)
         didCardTurn = false
         iterator = 0
         collectionView.reloadData()
+    }
+}
+
+extension SetsCardsViewController: SetsCardsViewControllerAlerts {
+    func showWarningAlert() {
+    let title = NSLocalizedString("Заполните карточку", comment: "")
+    let message = NSLocalizedString("Одно из полей (или оба) не заполнено(-ны).", comment: "")
+    let cancelButtonTitle = NSLocalizedString("OK", comment: "")
+    
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    
+    // Create the action.
+    let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .cancel) { _ in
+    }
+    
+    // Add the action.
+    alertController.addAction(cancelAction)
+    
+    present(alertController, animated: true, completion: nil)
     }
 }
 
