@@ -20,7 +20,9 @@ class SetsCardsViewController: UIViewController {
     @IBOutlet weak var addFrontCardText: UITextField!
     @IBOutlet weak var turnCardAround: UIButton!
     @IBOutlet weak var deleteCardButton: UIBarButtonItem!
+    @IBOutlet weak var readyButton: UIButton!
     
+    var setNextPhase = SmartSet()
     var lastModifiedItem: Int = 0
     
     var frontCard: String = ""
@@ -34,12 +36,19 @@ class SetsCardsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(setNextPhase.description, setNextPhase.name)
+        
         deleteCardButton.isEnabled = false
         turnCardAround.setTitle("->", for: UIControlState.normal)
         cardNumber.title = "Карточка № \(iterator)"
         addFrontCardText.layer.borderWidth = 0.8
         addFrontCardText.layer.borderColor = UIColor.blue.cgColor
         addFrontCardText.layer.cornerRadius = 10
+        
+        
+        readyButton.layer.borderWidth = 0.8
+        readyButton.layer.borderColor = UIColor.blue.cgColor
+        readyButton.layer.cornerRadius = 10
         
 //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DismissKeyboard))
 //        view.addGestureRecognizer(tap)
@@ -94,15 +103,22 @@ class SetsCardsViewController: UIViewController {
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let receiverVC = segue.destination as! SetsViewController
+        
+        //Transition from [(String),(String)] -> [String:String] of cards
+        if cardsCollection[cardsCollection.count - 1].back == "" ||
+            cardsCollection[cardsCollection.count - 1].front == "" {
+            cardsCollection.remove(at: cardsCollection.count - 1)
+        }
+        
+        for i in 0..<cardsCollection.count {
+            setNextPhase.words[cardsCollection[i].front] = cardsCollection[i].back
+        }
+        
+        receiverVC.sets.append(setNextPhase)
+        receiverVC.setsTableView?.reloadData()
     }
-    */
 
 }
 
@@ -167,7 +183,7 @@ extension SetsCardsViewController: UICollectionViewDelegate {
             backCard = ""
             addFrontCardText?.text = nil
             lastModifiedItem = cardsCollection.count - 1
-            //currentPlace = cardsCollection.count - 1
+            cardNumber.title = "Карточка № \(lastModifiedItem)"
         } else {
             cardsCollection[lastModifiedItem] = (front: frontCard, back: backCard)
             lastModifiedItem = indexPath.item
@@ -175,9 +191,9 @@ extension SetsCardsViewController: UICollectionViewDelegate {
             backCard = cardsCollection[indexPath.item].back
             addFrontCardText.text = frontCard
             if (indexPath.item != cardsCollection.count - 1) {deleteCardButton.isEnabled = true} else {deleteCardButton.isEnabled = false}
+            cardNumber.title = "Карточка № \(indexPath.item)"
         }
         promtLabel.text = "Введите изучаемое слово"
-        cardNumber.title = "Карточка № \(indexPath.item)"
         turnCardAround.setTitle("->", for: UIControlState.normal)
         didCardTurn = false
         iterator = 0

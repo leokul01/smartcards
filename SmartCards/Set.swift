@@ -9,7 +9,8 @@
 import UIKit
 
 struct SmartSet {
-    var cover: UIImageView?
+    var cover: UIImage?
+    var name: String = ""
     var description: String = ""
-    var words: [String : String]? = [String : String]()
+    var words: [String : String] = [String : String]()
 }

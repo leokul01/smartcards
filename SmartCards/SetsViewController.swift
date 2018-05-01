@@ -11,6 +11,7 @@ import UIKit
 class SetsViewController: UIViewController{
 
     @IBOutlet weak var setsTableView: UITableView!
+    var sets: [SmartSet] = [SmartSet]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +19,14 @@ class SetsViewController: UIViewController{
         
         // Do any additional setup after loading the view, typically from a nib.
     }
+
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        setsTableView.reloadData()
+//        if sets.count == 1 {
+//            print(sets[0].name, sets[0].description)
+//        }
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -36,7 +45,7 @@ extension SetsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(section) {
-        case 0: return 5
+        case 0: return sets.count
         case 1: return 1
         default:
             print("error")
@@ -48,7 +57,9 @@ extension SetsViewController: UITableViewDataSource {
         switch(indexPath.section) {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SetsCell", for: indexPath) as! SetsTableViewCell
-            cell.setsNameLabel.text = "Hello its me!"
+            cell.setsNameLabel.text = sets[indexPath.item].name
+            cell.setsDescriptionLabel.text = sets[indexPath.item].description
+            cell.setsImageView.image = sets[indexPath.item].cover
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddSetCell", for: indexPath) as! AddSetTableViewCell
@@ -62,6 +73,6 @@ extension SetsViewController: UITableViewDataSource {
 
 extension SetsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Pushed string #\(indexPath.row) in section #\(indexPath.section)")
+        //print("Pushed string #\(indexPath.row) in section #\(indexPath.section)")
     }
 }

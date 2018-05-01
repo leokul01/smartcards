@@ -18,7 +18,7 @@ class AddSetViewController: UIViewController{
     @IBOutlet weak var addPhotoSetButton: UIButton!
     @IBOutlet weak var nameSetButton: UIButton!
     @IBOutlet weak var descriptionSetButton: UIButton!
-    
+
     var set = SmartSet()
     
     override func viewDidLoad() {
@@ -30,8 +30,17 @@ class AddSetViewController: UIViewController{
         addPhotoSetButton.layer.cornerRadius = 10
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //if sender is UIButton {
+//            let tmp = sender as? UIButton
+//            if tmp?.tag != 2 {return}
+        if let receiverVC = segue.destination as? SetsCardsViewController {
+            receiverVC.setNextPhase = set
+        }
+        //}
+    }
+    
     @IBAction func unwindFromDescriptionViewControllerSave(unwindSegue: UIStoryboardSegue) {
-        
     }
     
     @IBAction func getSetsNameAction(_ sender: Any) {
@@ -43,7 +52,7 @@ class AddSetViewController: UIViewController{
     
 }
 
-extension AddSetViewController: AddCoverNameForSet {
+extension AddSetViewController: AddCoverNameForSet, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func nameInputField() {
         let title = NSLocalizedString("Название сета", comment: "")
         let message = NSLocalizedString("Придумайте короткое и информативное название", comment: "")
@@ -65,7 +74,7 @@ extension AddSetViewController: AddCoverNameForSet {
         }
         
         let saveAction = UIAlertAction(title: saveButtonTitle, style: .default) { _ in
-            print("\(setName?.text ?? "defaultName")")
+            self.set.name = setName?.text ?? "Default"
         }
         
         // Add the actions.
@@ -90,7 +99,16 @@ extension AddSetViewController: AddCoverNameForSet {
         }
         
         let mediaAction = UIAlertAction(title: mediaButtonTitle, style: .default) { _ in
-            print("The \"Confirm\" alert action sheet's destructive action occured.")
+            let image = UIImagePickerController()
+            image.delegate = self
+            
+            image.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            image.allowsEditing = false
+            
+            self.present(image, animated: true) {
+                // after it is done
+            }
+            
         }
         
         let webAction = UIAlertAction(title: webButtonTitle, style: .default) { _ in
@@ -108,5 +126,17 @@ extension AddSetViewController: AddCoverNameForSet {
         alertController.addAction(takeShotAction)
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.addPhotoSetButton.setTitle("", for: .normal)
+            self.addPhotoSetButton.layer.borderWidth = 0
+            self.set.cover = image
+            self.addPhotoSetButton.setImage(self.set.cover, for: .normal)
+        } else {
+            print("Error in imagePickerController")
+        }
+        self.dismiss(animated: true, completion: nil)
     }
 }
