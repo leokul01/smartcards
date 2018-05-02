@@ -30,8 +30,7 @@ class SetsCardsViewController: UIViewController {
     var didCardTurn = false
     
     var iterator = 0
-    var cardsCollection: [(front: String, back: String)] = [(front: "", back: "")]
-    var currentPlace = 0
+    var cardsCollection: [(knowledge: Double, front: String, back: String)] = [(knowledge: 0.0, front: "", back: "")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,15 +105,15 @@ class SetsCardsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let receiverVC = segue.destination as! SetsViewController
         
-        //Transition from [(String),(String)] -> [String:String] of cards
         if cardsCollection[cardsCollection.count - 1].back == "" ||
             cardsCollection[cardsCollection.count - 1].front == "" {
             cardsCollection.remove(at: cardsCollection.count - 1)
         }
-        
-        for i in 0..<cardsCollection.count {
-            setNextPhase.words[cardsCollection[i].front] = cardsCollection[i].back
-        }
+//        Transition from [(String),(String)] -> [String:String] of cards
+//        for i in 0..<cardsCollection.count {
+//            setNextPhase.words[cardsCollection[i].front] = cardsCollection[i].back
+//        }
+        setNextPhase.words = cardsCollection
         
         receiverVC.sets.append(setNextPhase)
         receiverVC.setsTableView?.reloadData()
@@ -177,15 +176,15 @@ extension SetsCardsViewController: UICollectionViewDelegate {
                 showWarningAlert()
                 return
             }
-            cardsCollection[cardsCollection.count - 1] = (front: frontCard, back: backCard)
-            cardsCollection.append((front: "", back: ""))
+            cardsCollection[cardsCollection.count - 1] = (knowledge: 0, front: frontCard, back: backCard)
+            cardsCollection.append((knowledge: 0, front: "", back: ""))
             frontCard = ""
             backCard = ""
             addFrontCardText?.text = nil
             lastModifiedItem = cardsCollection.count - 1
             cardNumber.title = "Карточка № \(lastModifiedItem)"
         } else {
-            cardsCollection[lastModifiedItem] = (front: frontCard, back: backCard)
+            cardsCollection[lastModifiedItem] = (knowledge: 0, front: frontCard, back: backCard)
             lastModifiedItem = indexPath.item
             frontCard = cardsCollection[indexPath.item].front
             backCard = cardsCollection[indexPath.item].back

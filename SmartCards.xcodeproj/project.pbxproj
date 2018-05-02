@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E5007D562099FE1700535ACA /* MainTrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5007D552099FE1700535ACA /* MainTrainingViewController.swift */; };
 		E53E3F35208BC4AD00B4931C /* AddSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53E3F34208BC4AD00B4931C /* AddSetTableViewCell.swift */; };
 		E53E3F38208BCE3900B4931C /* AddSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53E3F37208BCE3900B4931C /* AddSetViewController.swift */; };
 		E5424C1120850FB200FA54BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5424C1020850FB200FA54BC /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E5007D552099FE1700535ACA /* MainTrainingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTrainingViewController.swift; sourceTree = "<group>"; };
 		E53E3F34208BC4AD00B4931C /* AddSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSetTableViewCell.swift; sourceTree = "<group>"; };
 		E53E3F37208BCE3900B4931C /* AddSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSetViewController.swift; sourceTree = "<group>"; };
 		E5424C0D20850FB200FA54BC /* SmartCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +86,7 @@
 				E5424C1020850FB200FA54BC /* AppDelegate.swift */,
 				E5424C1220850FB200FA54BC /* SetsViewController.swift */,
 				E5CB91622090F5CB0079352F /* Set.swift */,
+				E5007D552099FE1700535ACA /* MainTrainingViewController.swift */,
 				E5545121208C87890099F38A /* AddSet */,
 				E53E3F36208BC4BC00B4931C /* Cells */,
 				E5424C1620850FB200FA54BC /* Main.storyboard */,
@@ -184,6 +187,7 @@
 				E5545120208C87810099F38A /* DescriptionViewController.swift in Sources */,
 				E53E3F38208BCE3900B4931C /* AddSetViewController.swift in Sources */,
 				E5CC6D8E2085350A00AD0663 /* SetsTableViewCell.swift in Sources */,
+				E5007D562099FE1700535ACA /* MainTrainingViewController.swift in Sources */,
 				E5738B32209609A6008AC10F /* AddCollectionViewCell.swift in Sources */,
 				E5424C1520850FB200FA54BC /* SecondViewController.swift in Sources */,
 				E5424C1120850FB200FA54BC /* AppDelegate.swift in Sources */,

@@ -35,6 +35,12 @@ class SetsViewController: UIViewController{
     
     @IBAction func unwindFromAdding(unwindSegue: UIStoryboardSegue) {
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let receiverVC = segue.destination as? MainTrainingViewController {
+            receiverVC.trainingSets = sets
+        }
+    }
 }
 
 extension SetsViewController: UITableViewDataSource {
@@ -73,6 +79,6 @@ extension SetsViewController: UITableViewDataSource {
 
 extension SetsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //print("Pushed string #\(indexPath.row) in section #\(indexPath.section)")
+
     }
 }
