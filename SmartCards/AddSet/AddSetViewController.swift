@@ -18,11 +18,12 @@ class AddSetViewController: UIViewController{
     @IBOutlet weak var addPhotoSetButton: UIButton!
     @IBOutlet weak var nameSetButton: UIButton!
     @IBOutlet weak var descriptionSetButton: UIButton!
-
-    var set = SmartSet()
+    
+    var name: String = ""
+    var cover: UIImage?
+    var about: String = ""
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         addPhotoSetButton.layer.borderWidth = 0.8
@@ -31,13 +32,14 @@ class AddSetViewController: UIViewController{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //if sender is UIButton {
-//            let tmp = sender as? UIButton
-//            if tmp?.tag != 2 {return}
-        if let receiverVC = segue.destination as? SetsCardsViewController {
-            receiverVC.setNextPhase = set
+        guard let _ = cover else {
+            return // In that place I should implement default cover or just initialize it at first
         }
-        //}
+        if let receiverVC = segue.destination as? SetsCardsViewController {
+            receiverVC.cover = cover
+            receiverVC.name = name
+            receiverVC.about = about
+        }
     }
     
     @IBAction func unwindFromDescriptionViewControllerSave(unwindSegue: UIStoryboardSegue) {
@@ -74,7 +76,7 @@ extension AddSetViewController: AddCoverNameForSet, UINavigationControllerDelega
         }
         
         let saveAction = UIAlertAction(title: saveButtonTitle, style: .default) { _ in
-            self.set.name = setName?.text ?? "Default"
+            self.name = setName?.text ?? "Безымянный"
         }
         
         // Add the actions.
@@ -132,8 +134,8 @@ extension AddSetViewController: AddCoverNameForSet, UINavigationControllerDelega
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.addPhotoSetButton.setTitle("", for: .normal)
             self.addPhotoSetButton.layer.borderWidth = 0
-            self.set.cover = image
-            self.addPhotoSetButton.setImage(self.set.cover, for: .normal)
+            self.cover = image
+            self.addPhotoSetButton.setImage(self.cover, for: .normal)
         } else {
             print("Error in imagePickerController")
         }

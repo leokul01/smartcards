@@ -42,7 +42,7 @@ class MainTrainingViewController: UIViewController, UITextFieldDelegate {
         
         switch (mode) {
         case .local:
-            count = multiplier * trainingSets[0].words.count
+            count = multiplier * trainingSets[0].words_front.count
             localGame()
         case .global:
             globalGame()
@@ -51,33 +51,18 @@ class MainTrainingViewController: UIViewController, UITextFieldDelegate {
     }
     
     func localGame() {
-//      Preparation
         if count == 0 {
             dismiss(animated: true, completion: nil)
         }
         let set = trainingSets[0]
         
-        figure = randomInt(max: set.words.count - 1)
-        cardLabel.text = set.words[figure].front
+        figure = randomInt(max: set.words_front.count - 1)
+        cardLabel.text = set.words_front[figure]
         count -= 1
     }
     
     func globalGame() {
     
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    @objc func update() {
-        // sth
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -86,19 +71,19 @@ class MainTrainingViewController: UIViewController, UITextFieldDelegate {
         switch(mode) {
         case .local:
             let set = trainingSets[0]
-            if input == set.words[figure].back {
-                cardLabel.text = set.words[figure].back
+            if input == set.words_back[figure] {
                 UIView.animate(withDuration: 0.25, animations: {
                     self.cardLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
                     self.cardLabel.transform = CGAffineTransform(rotationAngle: 2 * CGFloat.pi)
                 })
+                cardLabel.text = set.words_back[figure]
                 
-                timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.update), userInfo: nil, repeats: false)
-                score += 1
-                topBarTitle.title = "Счет: \(score)"
-                cardLabel.text = nil
-                textField.text = nil
-                localGame()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self.score += 1
+                    self.topBarTitle.title = "Счет: \(self.score)"
+                    textField.text = nil
+                    self.localGame()
+                }
             }
         case .global:
             print("global")
@@ -120,5 +105,5 @@ class MainTrainingViewController: UIViewController, UITextFieldDelegate {
 extension MainTrainingViewController: RandomFuncs {
     func randomInt(max:Int) -> Int {
         return Int(arc4random_uniform(UInt32(max + 1)))
-    }
+    } 
 }

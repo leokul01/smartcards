@@ -8,29 +8,15 @@
 
 import UIKit
 
+let dataManager = DataManager()
+
 class SetsViewController: UIViewController{
 
     @IBOutlet weak var setsTableView: UITableView!
-    var sets: [SmartSet] = [SmartSet]()
+    //var set: SmartSet?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.setsTableView.dataSource = self
-        
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        setsTableView.reloadData()
-//        if sets.count == 1 {
-//            print(sets[0].name, sets[0].description)
-//        }
-//    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func unwindFromAdding(unwindSegue: UIStoryboardSegue) {
@@ -38,7 +24,7 @@ class SetsViewController: UIViewController{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let receiverVC = segue.destination as? MainTrainingViewController {
-            receiverVC.trainingSets = sets
+            receiverVC.trainingSets = dataManager.sets
         }
     }
 }
@@ -51,7 +37,7 @@ extension SetsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(section) {
-        case 0: return sets.count
+        case 0: return dataManager.sets.count
         case 1: return 1
         default:
             print("error")
@@ -63,9 +49,9 @@ extension SetsViewController: UITableViewDataSource {
         switch(indexPath.section) {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SetsCell", for: indexPath) as! SetsTableViewCell
-            cell.setsNameLabel.text = sets[indexPath.item].name
-            cell.setsDescriptionLabel.text = sets[indexPath.item].description
-            cell.setsImageView.image = sets[indexPath.item].cover
+            cell.setsNameLabel.text = dataManager.sets[indexPath.item].name
+            cell.setsDescriptionLabel.text = dataManager.sets[indexPath.item].about
+            cell.setsImageView.image = dataManager.sets[indexPath.item].cover
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddSetCell", for: indexPath) as! AddSetTableViewCell
@@ -74,6 +60,19 @@ extension SetsViewController: UITableViewDataSource {
             print("error")
             exit(1)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.selectionStyle = .none
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            dataManager.removeSet(index: indexPath.row)
+            self.setsTableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        return [deleteAction]
     }
 }
 

@@ -22,7 +22,9 @@ class SetsCardsViewController: UIViewController {
     @IBOutlet weak var deleteCardButton: UIBarButtonItem!
     @IBOutlet weak var readyButton: UIButton!
     
-    var setNextPhase = SmartSet()
+    var name: String = ""
+    var cover: UIImage?
+    var about: String = ""
     var lastModifiedItem: Int = 0
     
     var frontCard: String = ""
@@ -34,8 +36,6 @@ class SetsCardsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print(setNextPhase.description, setNextPhase.name)
         
         deleteCardButton.isEnabled = false
         turnCardAround.setTitle("->", for: UIControlState.normal)
@@ -48,15 +48,7 @@ class SetsCardsViewController: UIViewController {
         readyButton.layer.borderWidth = 0.8
         readyButton.layer.borderColor = UIColor.blue.cgColor
         readyButton.layer.cornerRadius = 10
-        
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DismissKeyboard))
-//        view.addGestureRecognizer(tap)
     }
-    
-//    @objc func DismissKeyboard(){
-//        //Causes the view to resign from the status of first responder.
-//        view.endEditing(true)
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -77,7 +69,6 @@ class SetsCardsViewController: UIViewController {
         iterator = 0
         collectionView.reloadData()
     }
-    
     @IBAction func turnAroundAction(_ sender: Any) {
         if (!didCardTurn) {
             promtLabel.text = "Введите перевод"
@@ -109,13 +100,17 @@ class SetsCardsViewController: UIViewController {
             cardsCollection[cardsCollection.count - 1].front == "" {
             cardsCollection.remove(at: cardsCollection.count - 1)
         }
-//        Transition from [(String),(String)] -> [String:String] of cards
-//        for i in 0..<cardsCollection.count {
-//            setNextPhase.words[cardsCollection[i].front] = cardsCollection[i].back
-//        }
-        setNextPhase.words = cardsCollection
-        
-        receiverVC.sets.append(setNextPhase)
+        dataManager.addSet(name: name, cover: cover!, about: about)
+
+        var tmp_knowledge = [Double]()
+        var tmp_front = [String]()
+        var tmp_back = [String]()
+        for i in 0..<cardsCollection.count {
+            tmp_knowledge.append(cardsCollection[i].knowledge)
+            tmp_front.append(cardsCollection[i].front)
+            tmp_back.append(cardsCollection[i].back)
+        }
+        dataManager.addCards(at: dataManager.sets.count - 1, words_knowledge: tmp_knowledge, words_front: tmp_front, words_back: tmp_back)
         receiverVC.setsTableView?.reloadData()
     }
 

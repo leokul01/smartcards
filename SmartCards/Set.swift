@@ -8,10 +8,10 @@
 
 import UIKit
 
-struct SmartSet {
-    var cover: UIImage?
-    var name: String = ""
-    var description: String = ""
-//    var words: [String : String] = [String : String]()
-    var words: [(knowledge: Double, front: String, back: String)] = [(knowledge: Double, front: String, back: String)]()
-}
+//struct SmartSet {
+//    var cover: UIImage?
+//    var name: String = ""
+//    var description: String = ""
+////    var words: [String : String] = [String : String]()
+//    var words: [(knowledge: Double, front: String, back: String)] = [(knowledge: Double, front: String, back: String)]()
+//}

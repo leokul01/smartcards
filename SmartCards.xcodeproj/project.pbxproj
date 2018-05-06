@@ -22,6 +22,7 @@
 		E5738B34209609B2008AC10F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5738B33209609B2008AC10F /* CollectionViewCell.swift */; };
 		E5CB91632090F5CB0079352F /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CB91622090F5CB0079352F /* Set.swift */; };
 		E5CC6D8E2085350A00AD0663 /* SetsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CC6D8D2085350A00AD0663 /* SetsTableViewCell.swift */; };
+		E5F03AE3209E21BF009512AC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F03AE2209E21BF009512AC /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		E5738B33209609B2008AC10F /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		E5CB91622090F5CB0079352F /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
 		E5CC6D8D2085350A00AD0663 /* SetsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsTableViewCell.swift; sourceTree = "<group>"; };
+		E5F03AE2209E21BF009512AC /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				E5424C1020850FB200FA54BC /* AppDelegate.swift */,
+				E5F03AE2209E21BF009512AC /* DataManager.swift */,
 				E5424C1220850FB200FA54BC /* SetsViewController.swift */,
 				E5CB91622090F5CB0079352F /* Set.swift */,
 				E5007D552099FE1700535ACA /* MainTrainingViewController.swift */,
@@ -192,6 +195,7 @@
 				E5424C1520850FB200FA54BC /* SecondViewController.swift in Sources */,
 				E5424C1120850FB200FA54BC /* AppDelegate.swift in Sources */,
 				E5424C1320850FB200FA54BC /* SetsViewController.swift in Sources */,
+				E5F03AE3209E21BF009512AC /* DataManager.swift in Sources */,
 				E5738B34209609B2008AC10F /* CollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -22,7 +22,7 @@ class DescriptionViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let receiverVC = segue.destination as! AddSetViewController
-        receiverVC.set.description = descriptionTextView.text ?? ""
+        receiverVC.about = descriptionTextView.text ?? ""
     }
     
     @IBAction func cancelAction(_ sender: Any) {
