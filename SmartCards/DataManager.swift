@@ -8,33 +8,6 @@
 
 import UIKit
 
-/* class wordsElement: NSObject, NSCoding {
-    var word: (knowledge: Double, front: String, back: String)!
-    
-    private let wordKnowledgeKey = "wordKnowledgeKey"
-    private let wordFrontKey = "wordFrontKey"
-    private let wordBackKey = "wordBackKey"
-    
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(word.knowledge, forKey: wordKnowledgeKey)
-        aCoder.encode(word.front, forKey: wordFrontKey)
-        aCoder.encode(word.back, forKey: wordBackKey)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        let knowledge = aDecoder.decodeObject(forKey: wordKnowledgeKey) as! Double
-        let front = aDecoder.decodeObject(forKey: wordFrontKey) as! String
-        let back = aDecoder.decodeObject(forKey: wordBackKey) as! String
-        word = (knowledge, front, back)
-    }
-    
-    init(knowledge: Double, front: String, back: String) {
-        self.word.knowledge = knowledge
-        self.word.front = front
-        self.word.back = back
-    }
-} */
-
 class SmartSet: NSObject, NSCoding {
     var name: String
     var cover: UIImage

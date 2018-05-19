@@ -13,7 +13,8 @@ let dataManager = DataManager()
 class SetsViewController: UIViewController{
 
     @IBOutlet weak var setsTableView: UITableView!
-    //var set: SmartSet?
+    
+    var setsNumberForTraining: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,11 @@ class SetsViewController: UIViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let receiverVC = segue.destination as? MainTrainingViewController {
             receiverVC.trainingSets = dataManager.sets
+            
+            let setsTrainNum = setsTableView.indexPathForSelectedRow?.item
+            if let setsTrainNumExplicit = setsTrainNum {
+                receiverVC.setsNumberForTraining = setsTrainNumExplicit
+            }
         }
     }
 }
@@ -78,6 +84,10 @@ extension SetsViewController: UITableViewDataSource {
 
 extension SetsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+//        if (indexPath.section == 0) {
+//            print(indexPath.item)
+//            setsNumberForTraining = indexPath.item
+//        }
+        
     }
 }

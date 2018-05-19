@@ -260,7 +260,7 @@
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SXz-4i-Pza">
                                 <rect key="frame" x="15" y="377" width="345" height="149"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wny-cQ-cx7">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -319,7 +319,7 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2WO-qr-nOM">
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="EEu-i9-jeu">
                                     <rect key="frame" x="50" y="0.0" width="10" height="149"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
@@ -336,10 +336,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QbH-e8-vE2">
-                                <rect key="frame" x="164" y="556" width="48" height="66"/>
+                                <rect key="frame" x="143.5" y="556" width="88" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="gkS-ln-aiz"/>
                                 </constraints>
+                                <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                 <state key="normal" title="Готово"/>
                                 <connections>
                                     <segue destination="9pv-A4-QxB" kind="show" id="KsQ-nx-URN"/>
@@ -348,11 +349,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="lFz-QD-sBI" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QbH-e8-vE2" secondAttribute="trailing" constant="50" id="4Zz-SM-vNy"/>
                             <constraint firstItem="gVJ-kI-CiH" firstAttribute="bottom" secondItem="CZc-6t-9JB" secondAttribute="bottom" constant="5" id="8sJ-cb-3oo"/>
                             <constraint firstItem="1TK-de-ctM" firstAttribute="top" secondItem="xau-pU-0bb" secondAttribute="bottom" constant="30" id="9e5-Ar-KG8"/>
                             <constraint firstItem="xau-pU-0bb" firstAttribute="leading" secondItem="lFz-QD-sBI" secondAttribute="leading" id="CSp-60-YUN"/>
                             <constraint firstItem="xau-pU-0bb" firstAttribute="trailing" secondItem="lFz-QD-sBI" secondAttribute="trailing" id="DZk-7H-wxR"/>
                             <constraint firstItem="lFz-QD-sBI" firstAttribute="trailing" secondItem="SXz-4i-Pza" secondAttribute="trailing" constant="15" id="Eya-uD-zsy"/>
+                            <constraint firstItem="QbH-e8-vE2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lFz-QD-sBI" secondAttribute="leading" constant="50" id="Gak-NU-9P1"/>
                             <constraint firstItem="lFz-QD-sBI" firstAttribute="trailing" secondItem="1TK-de-ctM" secondAttribute="trailing" constant="15" id="MyB-XF-cC6"/>
                             <constraint firstItem="SXz-4i-Pza" firstAttribute="centerX" secondItem="qHs-kq-bgS" secondAttribute="centerX" id="POK-31-til"/>
                             <constraint firstItem="gVJ-kI-CiH" firstAttribute="trailing" secondItem="CZc-6t-9JB" secondAttribute="trailing" constant="5" id="SDT-4D-ysq"/>
@@ -567,6 +570,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="1zI-7u-i6X"/>
         <segue reference="KsQ-nx-URN"/>
     </inferredMetricsTieBreakers>
 </document>

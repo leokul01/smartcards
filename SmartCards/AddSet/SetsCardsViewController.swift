@@ -44,6 +44,14 @@ class SetsCardsViewController: UIViewController {
         addFrontCardText.layer.borderColor = UIColor.blue.cgColor
         addFrontCardText.layer.cornerRadius = 10
         
+//        let mViewBorder = CAShapeLayer()
+//        mViewBorder.strokeColor = UIColor.magenta.cgColor
+//        mViewBorder.lineDashPattern = [4, 4]
+//        mViewBorder.frame = collectionView.bounds
+//        mViewBorder.fillColor = nil
+//        mViewBorder.path = UIBezierPath(rect: collectionView.bounds).cgPath
+//        collectionView.layer.addSublayer(mViewBorder)
+        
         
         readyButton.layer.borderWidth = 0.8
         readyButton.layer.borderColor = UIColor.blue.cgColor

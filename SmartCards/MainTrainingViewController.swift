@@ -23,9 +23,10 @@ class MainTrainingViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var cardLabel: UILabel!
     @IBOutlet weak var translationField: UITextField!
     
-    var timer = Timer()
     let multiplier: Int = 3 // determines how many rounds will be in training
+    
     var trainingSets: [SmartSet] = [SmartSet]()
+    var setsNumberForTraining: Int = 0
     var mode: Mode = .local
     var score: Int = 0
     var count: Int = 0
@@ -42,7 +43,7 @@ class MainTrainingViewController: UIViewController, UITextFieldDelegate {
         
         switch (mode) {
         case .local:
-            count = multiplier * trainingSets[0].words_front.count
+            count = multiplier * trainingSets[setsNumberForTraining].words_front.count
             localGame()
         case .global:
             globalGame()
@@ -54,7 +55,7 @@ class MainTrainingViewController: UIViewController, UITextFieldDelegate {
         if count == 0 {
             dismiss(animated: true, completion: nil)
         }
-        let set = trainingSets[0]
+        let set = trainingSets[setsNumberForTraining]
         
         figure = randomInt(max: set.words_front.count - 1)
         cardLabel.text = set.words_front[figure]
@@ -70,7 +71,7 @@ class MainTrainingViewController: UIViewController, UITextFieldDelegate {
         
         switch(mode) {
         case .local:
-            let set = trainingSets[0]
+            let set = trainingSets[setsNumberForTraining]
             if input == set.words_back[figure] {
                 UIView.animate(withDuration: 0.25, animations: {
                     self.cardLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
