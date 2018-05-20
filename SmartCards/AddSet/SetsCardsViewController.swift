@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SetsCardsViewControllerAlerts {
-    func showWarningAlert()
+    func showWarningAlert(_ header: String, _ subHeader: String)
 }
 
 class SetsCardsViewController: UIViewController {
@@ -23,7 +23,7 @@ class SetsCardsViewController: UIViewController {
     @IBOutlet weak var readyButton: UIButton!
     
     var name: String = ""
-    var cover: UIImage?
+    var cover: UIImage = UIImage(named: "unknown")!
     var about: String = ""
     var lastModifiedItem: Int = 0
     
@@ -43,15 +43,6 @@ class SetsCardsViewController: UIViewController {
         addFrontCardText.layer.borderWidth = 0.8
         addFrontCardText.layer.borderColor = UIColor.blue.cgColor
         addFrontCardText.layer.cornerRadius = 10
-        
-//        let mViewBorder = CAShapeLayer()
-//        mViewBorder.strokeColor = UIColor.magenta.cgColor
-//        mViewBorder.lineDashPattern = [4, 4]
-//        mViewBorder.frame = collectionView.bounds
-//        mViewBorder.fillColor = nil
-//        mViewBorder.path = UIBezierPath(rect: collectionView.bounds).cgPath
-//        collectionView.layer.addSublayer(mViewBorder)
-        
         
         readyButton.layer.borderWidth = 0.8
         readyButton.layer.borderColor = UIColor.blue.cgColor
@@ -108,7 +99,7 @@ class SetsCardsViewController: UIViewController {
             cardsCollection[cardsCollection.count - 1].front == "" {
             cardsCollection.remove(at: cardsCollection.count - 1)
         }
-        dataManager.addSet(name: name, cover: cover!, about: about)
+        dataManager.addSet(name: name, cover: cover, about: about, knowledge: 0.0, timeLastTrainEnd: 0.0)
 
         var tmp_knowledge = [Double]()
         var tmp_front = [String]()
@@ -176,8 +167,18 @@ extension SetsCardsViewController: UICollectionViewDelegate {
                 backCard = cardsCollection[cardsCollection.count - 1].back
             }
             if frontCard == "" || backCard == "" {
-                showWarningAlert()
+                let header = "Заполните карточку"
+                let subheader = "Одно из полей (или оба) не заполнено(-ны)."
+                showWarningAlert(header, subheader)
                 return
+            }
+            for i in 0..<cardsCollection.count {
+                if frontCard == cardsCollection[i].front && backCard == cardsCollection[i].back {
+                    let header = "Полное совпадение"
+                    let subheader = "Вы уже ввели такую карточку. В этот раз без штрафа, но впредь будьте осторожнее!"
+                    showWarningAlert(header,subheader)
+                    return
+                }
             }
             cardsCollection[cardsCollection.count - 1] = (knowledge: 0, front: frontCard, back: backCard)
             cardsCollection.append((knowledge: 0, front: "", back: ""))
@@ -204,21 +205,21 @@ extension SetsCardsViewController: UICollectionViewDelegate {
 }
 
 extension SetsCardsViewController: SetsCardsViewControllerAlerts {
-    func showWarningAlert() {
-    let title = NSLocalizedString("Заполните карточку", comment: "")
-    let message = NSLocalizedString("Одно из полей (или оба) не заполнено(-ны).", comment: "")
-    let cancelButtonTitle = NSLocalizedString("OK", comment: "")
-    
-    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-    
-    // Create the action.
-    let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .cancel) { _ in
-    }
-    
-    // Add the action.
-    alertController.addAction(cancelAction)
-    
-    present(alertController, animated: true, completion: nil)
+    func showWarningAlert(_ header: String, _ subHeader: String) {
+        let title = NSLocalizedString(header, comment: "")
+        let message = NSLocalizedString(subHeader, comment: "")
+        let cancelButtonTitle = NSLocalizedString("OK", comment: "")
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        // Create the action.
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .cancel) { _ in
+        }
+        
+        // Add the action.
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
 }
 

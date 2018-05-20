@@ -84,10 +84,6 @@ extension SetsViewController: UITableViewDataSource {
 
 extension SetsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if (indexPath.section == 0) {
-//            print(indexPath.item)
-//            setsNumberForTraining = indexPath.item
-//        }
         
     }
 }

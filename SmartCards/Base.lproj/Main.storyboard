@@ -28,7 +28,7 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4qP-NR-QF8">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SetsCell" rowHeight="103" id="xEM-TS-Hpj" customClass="SetsTableViewCell" customModule="SmartCards" customModuleProvider="target">
@@ -422,29 +422,47 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81P-DS-ve9">
+                                <rect key="frame" x="326.5" y="183.5" width="18.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6d-po-vUC">
+                                <rect key="frame" x="30" y="183" width="15.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="NMG-Zx-4gk" firstAttribute="trailing" secondItem="yGk-4V-N2f" secondAttribute="trailing" id="0NQ-dK-Whv"/>
+                            <constraint firstItem="NZy-f9-R0j" firstAttribute="top" secondItem="w6d-po-vUC" secondAttribute="bottom" constant="115" id="7L9-dr-YEn"/>
                             <constraint firstItem="NMG-Zx-4gk" firstAttribute="leading" secondItem="yGk-4V-N2f" secondAttribute="leading" id="StS-4H-efg"/>
                             <constraint firstItem="yGk-4V-N2f" firstAttribute="trailing" secondItem="NZy-f9-R0j" secondAttribute="trailing" constant="15" id="TDG-3W-bJ1"/>
+                            <constraint firstItem="yGk-4V-N2f" firstAttribute="trailing" secondItem="81P-DS-ve9" secondAttribute="trailing" constant="30" id="TrB-Kl-YVa"/>
                             <constraint firstItem="BbN-Om-NW9" firstAttribute="top" secondItem="NMG-Zx-4gk" secondAttribute="bottom" constant="30" id="ZFP-JZ-HQC"/>
+                            <constraint firstItem="w6d-po-vUC" firstAttribute="leading" secondItem="yGk-4V-N2f" secondAttribute="leading" constant="30" id="ZNs-Ik-vlu"/>
                             <constraint firstItem="NZy-f9-R0j" firstAttribute="top" secondItem="BbN-Om-NW9" secondAttribute="bottom" constant="30" id="ZU8-gM-oaX"/>
                             <constraint firstItem="BbN-Om-NW9" firstAttribute="centerX" secondItem="pRm-DT-r6B" secondAttribute="centerX" id="eXn-8J-xb4"/>
                             <constraint firstItem="NMG-Zx-4gk" firstAttribute="top" secondItem="yGk-4V-N2f" secondAttribute="top" id="hYF-zz-c7d"/>
+                            <constraint firstItem="NZy-f9-R0j" firstAttribute="top" secondItem="81P-DS-ve9" secondAttribute="bottom" constant="115" id="nAX-9d-cnl"/>
                             <constraint firstItem="NZy-f9-R0j" firstAttribute="leading" secondItem="yGk-4V-N2f" secondAttribute="leading" constant="15" id="wvs-SL-lcQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yGk-4V-N2f"/>
                     </view>
                     <connections>
                         <outlet property="cardLabel" destination="BbN-Om-NW9" id="rT5-NM-BtR"/>
+                        <outlet property="minusLabel" destination="w6d-po-vUC" id="prx-Ee-Izz"/>
+                        <outlet property="plusLabel" destination="81P-DS-ve9" id="SvP-9m-WEd"/>
                         <outlet property="topBarTitle" destination="Ag0-yf-nzC" id="90O-do-iMA"/>
                         <outlet property="translationField" destination="NZy-f9-R0j" id="sl0-AJ-mGx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wcu-XO-s6t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="759" y="-1083"/>
+            <point key="canvasLocation" x="757.60000000000002" y="-1083.5082458770617"/>
         </scene>
         <!--Description View Controller-->
         <scene sceneID="kgd-SP-R35">
@@ -509,7 +527,7 @@
             </objects>
             <point key="canvasLocation" x="1502" y="-1083"/>
         </scene>
-        <!--Second-->
+        <!--В разработке-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="SmartCards" customModuleProvider="target" sceneMemberID="viewController">
@@ -517,30 +535,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="87" y="312" width="201.5" height="43"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="This view develops." textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
+                                <rect key="frame" x="37" y="312" width="301.5" height="43"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="80" y="363" width="215" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" symbolic="YES" id="Day-4N-Vmt"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="JgO-Fn-dHn"/>
                             <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="В разработке" image="second" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -570,7 +580,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1zI-7u-i6X"/>
-        <segue reference="KsQ-nx-URN"/>
+        <segue reference="u7Y-xg-7CH"/>
     </inferredMetricsTieBreakers>
 </document>

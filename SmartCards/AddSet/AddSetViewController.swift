@@ -20,7 +20,7 @@ class AddSetViewController: UIViewController{
     @IBOutlet weak var descriptionSetButton: UIButton!
     
     var name: String = ""
-    var cover: UIImage?
+    var cover: UIImage = UIImage(named: "unknown")!
     var about: String = ""
     
     override func viewDidLoad() {
@@ -32,9 +32,6 @@ class AddSetViewController: UIViewController{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let _ = cover else {
-            return // In that place I should implement default cover or just initialize it at first
-        }
         if let receiverVC = segue.destination as? SetsCardsViewController {
             receiverVC.cover = cover
             receiverVC.name = name
