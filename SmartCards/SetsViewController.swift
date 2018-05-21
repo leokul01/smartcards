@@ -9,6 +9,8 @@
 import UIKit
 
 let dataManager = DataManager()
+var globalTime: Double = NSDate().timeIntervalSince1970 / 3600
+var notif: Bool = false
 
 class SetsViewController: UIViewController{
 
@@ -18,6 +20,14 @@ class SetsViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        globalTime = NSDate().timeIntervalSince1970 / 3600
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if notif {
+            setsTableView?.reloadData()
+            notif = false
+        }
     }
     
     @IBAction func unwindFromAdding(unwindSegue: UIStoryboardSegue) {
@@ -26,6 +36,10 @@ class SetsViewController: UIViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let receiverVC = segue.destination as? MainTrainingViewController {
             receiverVC.trainingSets = dataManager.sets
+            receiverVC.onDoneBlock = {
+                self.setsTableView?.reloadData()
+                receiverVC.dismiss(animated: true, completion: nil)
+            }
             
             let setsTrainNum = setsTableView.indexPathForSelectedRow?.item
             if let setsTrainNumExplicit = setsTrainNum {
@@ -58,6 +72,15 @@ extension SetsViewController: UITableViewDataSource {
             cell.setsNameLabel.text = dataManager.sets[indexPath.item].name
             cell.setsDescriptionLabel.text = dataManager.sets[indexPath.item].about
             cell.setsImageView.image = dataManager.sets[indexPath.item].cover
+            
+            var dt = globalTime - dataManager.sets[indexPath.item].timeLastTrainEnd
+            
+            // KOSTYL
+            if dt == 0 && dataManager.sets[indexPath.item].knowledge == 0.000000000001 {
+                dt = 10000000000000
+            }
+            
+            cell.updateProgress(dtime: dt, currentKnowledge: dataManager.sets[indexPath.item].knowledge)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddSetCell", for: indexPath) as! AddSetTableViewCell
@@ -85,5 +108,17 @@ extension SetsViewController: UITableViewDataSource {
 extension SetsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+    }
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

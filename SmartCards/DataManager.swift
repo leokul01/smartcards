@@ -111,6 +111,11 @@ class DataManager {
         save()
     }
     
+    func progress(dtime: Double, currentKnowledge: Double) -> Float {
+        let exp: Double = 2.718281828459045
+        return Float(pow(exp, -dtime/currentKnowledge))
+    }
+    
     func archiveSets(sets: [SmartSet]) -> Data {
         let archivedObject = NSKeyedArchiver.archivedData(withRootObject: sets as NSArray)
         return archivedObject

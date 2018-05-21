@@ -39,6 +39,7 @@ class MainTrainingViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround() 
         
         // Creating path for train
         self.path = makePath()
@@ -169,11 +170,7 @@ class MainTrainingViewController: UIViewController, UITextFieldDelegate {
         return path
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let receiverVC = segue.destination as? SetsViewController {
-            receiverVC.setsTableView?.reloadData()
-        }
-    }
+    var onDoneBlock : (() -> Void)?
     
     @IBAction func backAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -201,7 +198,7 @@ extension MainTrainingViewController {
         
         // Create the action.
         let exitViewAction = UIAlertAction(title: exitViewButtonTitle, style: .default) { _ in
-            self.dismiss(animated: true, completion: nil)
+            self.onDoneBlock!()
         }
         
         // Add the action.

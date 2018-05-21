@@ -12,10 +12,15 @@ class SetsTableViewCell: UITableViewCell {
     @IBOutlet weak var setsNameLabel: UILabel!
     @IBOutlet weak var setsDescriptionLabel: UILabel!
     @IBOutlet weak var setsImageView: UIImageView!
+    @IBOutlet weak var progressView: UIProgressView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func updateProgress(dtime: Double, currentKnowledge: Double) {
+        self.progressView.setProgress(dataManager.progress(dtime: dtime, currentKnowledge: currentKnowledge), animated: true)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

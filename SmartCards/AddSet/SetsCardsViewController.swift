@@ -36,6 +36,7 @@ class SetsCardsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround() 
         
         deleteCardButton.isEnabled = false
         turnCardAround.setTitle("->", for: UIControlState.normal)
@@ -95,11 +96,25 @@ class SetsCardsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let receiverVC = segue.destination as! SetsViewController
         
-        if cardsCollection[cardsCollection.count - 1].back == "" ||
-            cardsCollection[cardsCollection.count - 1].front == "" {
-            cardsCollection.remove(at: cardsCollection.count - 1)
+        if cardsCollection[cardsCollection.count - 1].back == "" || cardsCollection[cardsCollection.count - 1].front == "" {
+            if lastModifiedItem == cardsCollection.count - 1 && frontCard != "" {
+                if backCard == "" && didCardTurn {
+                    backCard = addFrontCardText.text ?? ""
+                }
+                cardsCollection[cardsCollection.count - 1] = (knowledge: 0, front: frontCard, back: backCard)
+            } else {
+                if cardsCollection.count == 1 {
+                    showWarningAlert("Набор без карточек!", "Создать набор - это хорошо, но добавить в него еще и карточки - идеально.")
+                    return
+                } else {
+                    cardsCollection.remove(at: cardsCollection.count - 1)
+                }
+            }
+            
         }
-        dataManager.addSet(name: name, cover: cover, about: about, knowledge: 0.0, timeLastTrainEnd: 0.0)
+        let timetmp: Double = NSDate().timeIntervalSince1970 / 3600
+        globalTime = timetmp
+        dataManager.addSet(name: name, cover: cover, about: about, knowledge: 0.000000000001, timeLastTrainEnd: timetmp)
 
         var tmp_knowledge = [Double]()
         var tmp_front = [String]()
@@ -177,6 +192,16 @@ extension SetsCardsViewController: UICollectionViewDelegate {
                     let header = "Полное совпадение"
                     let subheader = "Вы уже ввели такую карточку. В этот раз без штрафа, но впредь будьте осторожнее!"
                     showWarningAlert(header,subheader)
+                    frontCard = ""
+                    backCard = ""
+                    addFrontCardText.text = nil
+                    promtLabel.text = "Введите изучаемое слово"
+                    UIView.animate(withDuration: 0.25, animations: {
+                        self.addFrontCardText.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+                        self.addFrontCardText.transform = CGAffineTransform(rotationAngle: 2 * CGFloat.pi)
+                    })
+                    turnCardAround.setTitle("->", for: UIControlState.normal)
+                    didCardTurn = false
                     return
                 }
             }
